@@ -1,0 +1,45 @@
+openapi: 3.0.2
+info:
+  title: "API"
+  version: "1.0.0"
+  contact:
+    name: Келехсаева Алиса
+    email: kelekhsaeva@surf.dev
+
+servers:
+  - url: https://someaddress.com
+    description: TODO заглушка, требуется поправить в будущем на реальный адрес. 
+
+components:
+  securitySchemes:
+    AuthApiKey:
+      description: Ключ авторизованного пользователя
+      type: apiKey
+      in: header
+      name: Authorization  
+
+
+security:
+  - AuthApiKey: []
+
+paths:
+  /itemInfo{itemId}:
+    get:
+      summary: Получение данных карточки товара
+      description: Данный метод возвращает данные карточки товара по его идентификатору.
+      tags:
+      parameters:
+        - name: itemId
+          required: true
+          in: path
+          schema:
+            type: string
+          example: "12345k"
+          description: Артикул товара
+      responses:
+        "200":
+          description: Данные карточки товара получены
+          content:
+            application/json:
+              schema:
+                $ref: "models.yaml#/components/schemas/itemInfo"

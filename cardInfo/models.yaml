@@ -1,0 +1,125 @@
+components:
+  schemas:
+    itemInfo
+      type: object
+      description: Данные по выбранному товару
+      properties:
+        productdata:
+          nullable: true
+          type: array
+          items:
+            $ref: "models.yaml#/components/schemas/Data"
+
+    Data:
+      type: object
+      description: Список полей карточки
+      properties:
+        itemId:
+          type: string
+          description: Артикул товара
+          example: "12345k"
+        imageUrl:
+          type: array
+          description: Избражения товара
+          items: 
+            $ref: "models.yaml#/components/schemas/Image"
+        videoUrl:
+          type: array
+          description: Видео с товаром
+          items: 
+            $ref: "models.yaml#/components/schemas/Video"
+        productSign:
+          type: string
+          description: Признак товара
+          example: "NEW"
+        productRate:
+          type: string
+          description: Рейтинг товара
+          example: "4.7"
+        productCategories:
+          type: array
+          description: Категории товара
+          items: 
+            $ref: "models.yaml#/components/schemas/Category"
+        productName:
+          type: string
+          description: Наименование товара
+        price:
+          type: int
+          description: Текущая цена
+        priceCurrency:
+          type: string
+          description: Валюта основной цены
+        oldPrice:
+          nullable: 
+          type: int
+          description: Старая цена
+        description:
+          type: string
+          description: Описание товара
+          nullable: false
+        brandName:
+          type: string
+          nullable: true
+        brandDescription:
+          type: string
+          nullable: false
+        service:
+          type: boolean
+          description: Подлежит ли товар бесплатному сервису
+          nullable: false
+        certificatesUrl:
+          type: array
+          description: Изображения сертификатов
+          nullable: true
+          items: 
+            $ref: "models.yaml#/components/schemas/Certificate"
+        sizes:
+          type: array
+          description: Доступные размеры
+          items: 
+            $ref: "models.yaml#/components/schemas/Size"
+        sizeType:
+          type: string
+          description: Тип размера
+        availability:
+          type: array
+          description: Список магазинов с наличием товара
+          nullable: true
+          items:
+            $ref: "models.yaml#/components/schemas/Availability"
+        reviews:
+          type: array
+          nullable: true
+          items:
+            $ref: "models.yaml#/components/schemas/Reviews"
+
+    Availability:
+      description: Список магазинов с наличием товара
+      type: object
+      properties:
+        storeId:
+          type: string
+        address:
+          type: string
+
+    Image:
+      description: Ссылка на изображение
+      type: string
+
+
+    Video:
+      description: Ссылка на видео
+      type: string
+
+    Category:
+      description: Категория товара
+      type: string
+
+    Certificate:
+      description: Ссылка на изображение сертификата
+      type: string
+
+    Size:
+      description: Доступный размер
+      type: string

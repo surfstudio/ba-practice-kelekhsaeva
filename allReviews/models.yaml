@@ -1,0 +1,45 @@
+components:
+  schemas:
+    Reviews:
+      type: object
+      description: Список отзывов относящихся к данному товару
+      properties:
+        reviews:
+          nullable: true
+          type: array
+          items:
+            $ref: "models.yaml#/components/schemas/ReviewsInfo"
+
+    ReviewsInfo:
+      type: object
+      description: Список отзывов
+      properties:
+        reviewId:
+          type: string
+          required: false
+          description: Идентификатор отзыва
+        reviewRate:
+          type: int
+          required: true
+          description: Рейтинг товара
+        reviewerName:
+          type: string
+          required: false
+          description: Имя пользователя, оставившего отзыв
+        reviewDate:
+          type: string
+          required: false
+          description: Дата публикации отзыва
+        text:
+          type: string
+          required: false
+          description: Текст отзыва
+        pictureUrl:
+          nullable: true
+          type: array
+          items:
+            $ref: "models.yaml#/components/schemas/Picture"
+    Picture:
+       type: string
+       maxItems: 5
+       description: Ссылка на изображение, прикрепленное к отзыву
